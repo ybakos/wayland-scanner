@@ -1,5 +1,7 @@
 # Wayland Scanner
 
+## Unstable! Insane! Inane!
+
 A crazy person's experimental re-implementation of the official Wayland scanner.
 
 A self-serving thought experiment about tool/language diversification.
