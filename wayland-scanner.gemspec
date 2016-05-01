@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version = "~> 2.2.1"
+  spec.add_dependency "nokogiri", "~> 1.6"
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 11.1"
-  spec.add_development_dependency "nokogiri", "~> 1.6"
   spec.add_development_dependency "minitest", "~> 5.8"
 end
