@@ -1,12 +1,16 @@
 #!/usr/bin/env ruby
 
-require 'nokogiri'
+# wayland-scanner
+# A driver program for the Wayland scanner.
 
-DTD_PATH = "wayland.dtd"
-XML_PATH = "wayland.xml"
+require 'wayland/scanner'
 
-doc = Nokogiri::XML::Document.parse(File.read(XML_PATH), nil, nil, Nokogiri::XML::ParseOptions::DTDVALID)
+abort("Usage: wayland-scanner xml_path destination_dir") unless (ARGV.length == 2)
 
-unless doc.external_subset.validate(doc).empty?
-  abort("Error: #{XML_PATH} failed validation with #{DTD_PATH}")
+xml_path, destination_path = ARGV
+
+File.open(xml_path, 'r') do |xml|
+  scanner = Wayland::Scanner::Scanner.new(xml, destination_path) #TODO: Ugh, fix namespace
+  abort("Error: #{xml_path} failed validation.") unless scanner.xml_valid?
+  scanner.scan!
 end
